@@ -12,11 +12,11 @@ include_directories(${PROJECT_SOURCE_DIR}/inc)
 
 # Add subdirectory
 # There is another CMakeLists.txt in this catalog
-add_subdirectory(src/) # TODO
+add_subdirectory(src) # TODO
 
 # Add executable
 # Build executable from there
-add_executable(puzzleSolver src/main.cpp)
+add_executable(puzzleSolver src/main.cc)
 
 # Link modules
 # Link puzzleSolver with XYZ library
@@ -36,4 +36,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_subdirectory(test/xyz) # TODO
+add_subdirectory(test) # TODO
