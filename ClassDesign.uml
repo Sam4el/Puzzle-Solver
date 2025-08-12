@@ -1,0 +1,35 @@
+@startuml
+
+class Variable {
+    - name : string
+    - domain : set<int>
+    - assignedValue : int
+    + assign(value : int) : void
+    + unassign() : void
+}
+
+abstract class Constraint {
+    + isSatisfied(...) : bool
+    + getScope() : vector<Variable>
+}
+
+class CSP {
+    - variables : vector<Variable>
+    - constraints : vector<Constraint>
+    + addVariable(var : Variable) : void
+    + addConstraint(cons : Constraint) : void
+}
+
+class Solver {
+    - csp : CSP&
+    + backtrackingSearch() : bool
+    + assignVariable(var : Variable, value : int) : bool
+    + unassignVariable(var : Variable) : void
+}
+
+CSP "1..*" --> "1..*" Variable : contains
+CSP "1..*" --> "1..*" Constraint : contains
+Solver --> CSP : uses
+Constraint --> Variable : references
+
+@enduml
