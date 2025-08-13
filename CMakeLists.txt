@@ -12,17 +12,17 @@ include_directories(${PROJECT_SOURCE_DIR}/inc)
 
 # Add subdirectory
 # There is another CMakeLists.txt in this catalog
-add_subdirectory(src) # TODO
+add_subdirectory(src)
 
 # Add executable
 # Build executable from there
 add_executable(puzzleSolver src/main.cc)
 
 # Link modules
-# Link puzzleSolver with XYZ library
+# Link puzzleSolver with solverLib library
 # PRIVATE means only puzzleSolver will know about this,
 # not thing that depend on puzzleSolver
-target_link_libraries(puzzleSolver PRIVATE xyz)
+target_link_libraries(puzzleSolver PRIVATE solverLib)
 
 # Add GoogleTest
 include(FetchContent)
@@ -36,4 +36,4 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_subdirectory(test) # TODO
+add_subdirectory(test)

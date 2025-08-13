@@ -6,13 +6,17 @@
 
 class Variable {
 public:
-Variable() = default;
-Variable(std::string name);
+Variable() = delete;
+Variable(const std::string name = "", std::set<int> domain);
+
 void assign(int value);
 void unassign();
+void reduceDomain(int value);
+void restoreDomain();
 
 private:
-std::string name;
+const std::string name;
 std::set<int> domain;
+const std::set<int> domainBackup;
 std::optional<int> assignedValue;
 };

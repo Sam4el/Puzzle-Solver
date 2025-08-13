@@ -6,18 +6,21 @@ class Variable {
     - assignedValue : int
     + assign(value : int) : void
     + unassign() : void
+    + reduceDomain(value : int) : void
+    + restoreDomain() : void
 }
 
 abstract class Constraint {
-    + isSatisfied(...) : bool
-    + getScope() : vector<Variable>
+    + isSatisfied(assignments : unordered_map<string, int>) : bool
+    + getScope() : vector<unique_ptr<Variable>>
 }
 
 class CSP {
     - variables : vector<Variable>
     - constraints : vector<Constraint>
     + addVariable(var : Variable) : void
-    + addConstraint(cons : Constraint) : void
+    + addConstraint(constraint : Constraint) : void
+    + assignVariable(var : Variable&, value : int) void
 }
 
 class Solver {

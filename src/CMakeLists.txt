@@ -1,9 +1,9 @@
-add_library(solver STATIC 
-    constraint.cc
+add_library(solverLib STATIC
     csp.cc
     solver.cc
-    variable.cc)
+    variable.cc
+)
 
-target_include_directories(solver PUBLIC
+target_include_directories(solverLib PUBLIC
     ${PROJECT_SOURCE_DIR}/inc
 )
