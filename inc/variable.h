@@ -4,10 +4,14 @@
 
 #pragma once
 
+class VariableTestHelper;
+
 class Variable {
+friend class VariableTestHelper;
+
 public:
 Variable() = delete;
-Variable(const std::string name = "", std::set<int> domain);
+Variable(const std::string name, std::set<int> domain);
 
 void assign(int value);
 void unassign();

@@ -8,8 +8,8 @@ Solver() = delete;
 Solver(CSP& csp) : csp{csp} {}
 
 bool backtrackingSearch();
-bool assignVariable(Variable& var, int value); // Should it be reference?
-void unassignVariable(Variable& var); // Should it be reference?
+bool assignVariable(Variable& var, int value);
+void unassignVariable(Variable& var);
 void constraintPropagation();
 
 private:

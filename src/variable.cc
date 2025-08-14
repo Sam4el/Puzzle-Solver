@@ -1,3 +1,6 @@
+#include <iostream>
+#include <stdexcept>
+
 #include "variable.h"
 
 Variable::Variable(std::string name, std::set<int> domain)
@@ -6,7 +9,16 @@ Variable::Variable(std::string name, std::set<int> domain)
     domainBackup{domain} {}
 
 void Variable::assign(int value) {
-    assignedValue = value;
+    try {
+        if (domain.contains(value)) {
+            assignedValue = value;
+        } else {
+            throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
+        }
+    }
+    catch (std::domain_error& e) {
+        std::cerr << "assign() exception " << e.what() << "\n";
+    }
 }
 
 void Variable::unassign() {
@@ -14,7 +26,16 @@ void Variable::unassign() {
 }
 
 void Variable::reduceDomain(int value) {
-    domain.erase(value);
+    try {
+        if (domain.contains(value)) {
+            domain.erase(value);
+        } else {
+            throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
+        }
+    }
+    catch (std::domain_error& e) {
+        std::cerr << "reduceDomain() exception " << e.what() << "\n";
+    }
 }
 
 void Variable::restoreDomain() {
