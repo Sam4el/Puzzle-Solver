@@ -24,6 +24,18 @@ TEST(VariableTest, assignAndUnassign) {
     ASSERT_EQ(VariableTestHelper::getAssignedValue(var), std::nullopt);
 }
 
+TEST(VariableTest, isAssigned) {
+    Variable var{"Test1", {1, 2, 3, 4, 5}};
+
+    ASSERT_FALSE(var.isAssigned());
+
+    var.assign(1);
+    ASSERT_TRUE(var.isAssigned());
+
+    var.unassign();
+    ASSERT_FALSE(var.isAssigned());
+}
+
 TEST(VariableTest, reduceAndRestoreDomain) {
     Variable var{"Test1", {1, 2, 3, 4, 5}};
 
@@ -36,3 +48,14 @@ TEST(VariableTest, reduceAndRestoreDomain) {
     ASSERT_EQ(VariableTestHelper::getDomain(var).size(), 5);
 }
 
+TEST(VariableTest, assignValueValueOutOfDomain) {
+    Variable var{"Test1", {1, 2, 3, 4, 5}};
+
+    EXPECT_THROW(var.assign(10), std::domain_error);
+}
+
+TEST(VariableTest, reduceDomainValueOutOfDomain) {
+    Variable var{"Test1", {1, 2, 3, 4, 5}};
+
+    EXPECT_THROW(var.reduceDomain(10), std::domain_error);
+}

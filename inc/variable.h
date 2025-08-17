@@ -18,6 +18,8 @@ void unassign();
 void reduceDomain(int value);
 void restoreDomain();
 
+bool isAssigned() const;
+
 private:
 const std::string name;
 std::set<int> domain;

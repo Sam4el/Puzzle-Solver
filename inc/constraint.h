@@ -8,6 +8,7 @@
 
 class Constraint {
 public:
+virtual ~Constraint() = default;
 // assignments are <ConstraintName, Value>
 virtual bool isSatisfied(std::unordered_map<std::string, int> assignments) const = 0;
 virtual std::vector<std::unique_ptr<Variable>> getScope() const = 0;

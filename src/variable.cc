@@ -9,15 +9,12 @@ Variable::Variable(std::string name, std::set<int> domain)
     domainBackup{domain} {}
 
 void Variable::assign(int value) {
-    try {
-        if (domain.contains(value)) {
-            assignedValue = value;
-        } else {
-            throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
-        }
-    }
-    catch (std::domain_error& e) {
-        std::cerr << "assign() exception " << e.what() << "\n";
+    // TODO Should it be caught here or when called?
+
+    if (domain.contains(value)) {
+        assignedValue = value;
+    } else {
+        throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
     }
 }
 
@@ -26,18 +23,19 @@ void Variable::unassign() {
 }
 
 void Variable::reduceDomain(int value) {
-    try {
-        if (domain.contains(value)) {
-            domain.erase(value);
-        } else {
-            throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
-        }
-    }
-    catch (std::domain_error& e) {
-        std::cerr << "reduceDomain() exception " << e.what() << "\n";
+    // TODO Should it be caught here or when called?
+
+    if (domain.contains(value)) {
+        domain.erase(value);
+    } else {
+        throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
     }
 }
 
 void Variable::restoreDomain() {
     domain = domainBackup;
+}
+
+bool Variable::isAssigned() const {
+    return assignedValue.has_value();
 }

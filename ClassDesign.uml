@@ -6,6 +6,7 @@ class Variable {
     - assignedValue : int
     + assign(value : int) : void
     + unassign() : void
+    + isAssigned() : bool
     + reduceDomain(value : int) : void
     + restoreDomain() : void
 }
@@ -17,10 +18,11 @@ abstract class Constraint {
 
 class CSP {
     - variables : vector<Variable>
-    - constraints : vector<Constraint>
+    - constraints : vector<unique_ptr<Constraint>>
     + addVariable(var : Variable) : void
-    + addConstraint(constraint : Constraint) : void
+    + addConstraint(constraint : unique_ptr<Constraint>) : void
     + assignVariable(var : Variable&, value : int) void
+    + getUnassignedVariables() : vector<Variable*>
 }
 
 class Solver {

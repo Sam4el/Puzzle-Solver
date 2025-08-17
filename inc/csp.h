@@ -3,17 +3,22 @@
 
 #pragma once
 
+class CspTestHelper;
+
 class CSP {
+friend class CspTestHelper;
+
 public:
+void addConstraint(std::unique_ptr<Constraint>&& constraint);
 void addVariable(Variable var);
-void addConstraint(Constraint constraint);
 void assignVariable(Variable& var, int value);
 
-// TODO Methods: names and hat should they do?
-// TODO How do I know amount of variables and constraints?
-// TODO How do I add variables and constraints? Should they be public?
+std::vector<Variable*> getUnassignedVariables();
 
 private:
 std::vector<Variable> variables;
 std::vector<std::unique_ptr<Constraint>> constraints;
+// TODO Optimization needed?
+// Maybe add unordered_map<string, int> to keep quick acces
+// to Variables or Constraints by name.
 };
