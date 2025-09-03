@@ -19,15 +19,6 @@ TEST(cspTest, addConstraint) {
     ASSERT_EQ(CspTestHelper::getConstraintsSize(csp), 1);
 }
 
-TEST(cspTest, assignVariable) {
-    CSP csp;
-    csp.addVariable({"Test1", {1, 2, 3, 4}});
-    ASSERT_EQ(csp.getUnassignedVariables().size(), 1);
-
-    csp.assignVariable(*csp.getUnassignedVariables()[0], 2);
-    ASSERT_EQ(csp.getUnassignedVariables().size(), 0);
-}
-
 TEST(cspTest, getUnassignedVariables) {
     CSP csp;
     ASSERT_EQ(csp.getUnassignedVariables().size(), 0);

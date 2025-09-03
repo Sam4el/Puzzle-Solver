@@ -8,7 +8,7 @@ public:
         bool isSatisfied(std::unordered_map<std::string, int> assignments) const override {
             return false;
         }
-        std::vector<std::unique_ptr<Variable>> getScope() const override {
+        std::vector<Variable*> getScope() const override {
             return {};
         }
     };

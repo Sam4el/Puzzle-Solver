@@ -1,4 +1,5 @@
 #include <set>
+#include <stack>
 #include <string>
 #include <optional>
 
@@ -13,16 +14,17 @@ public:
 Variable() = delete;
 Variable(const std::string name, std::set<int> domain);
 
-void assign(int value);
-void unassign();
 void reduceDomain(int value);
-void restoreDomain();
+void restoreLastDomain();
+inline void assign() { assigned = true; }
+inline void unassign() { assigned = false; }
 
-bool isAssigned() const;
+inline const std::string getName() const { return name; }
+inline bool isAssigned() const { return assigned; }
 
 private:
 const std::string name;
 std::set<int> domain;
-const std::set<int> domainBackup;
-std::optional<int> assignedValue;
+std::stack<int> domainDelta;
+bool assigned;
 };
