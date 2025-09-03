@@ -3,7 +3,8 @@
 #include "variable.h"
 #include "variable_test/inc/variable_test_helper.h"
 
-TEST(VariableTest, constructor) {
+TEST(VariableTest, constructor)
+{
     Variable var{"Test123", {1, 2, 3, 4, 5}};
     std::set<int> expectedDomain{1, 2, 3, 4, 5};
 
@@ -11,7 +12,8 @@ TEST(VariableTest, constructor) {
     ASSERT_EQ(var.getName(), "Test123");
 }
 
-TEST(VariableTest, isAssigned) {
+TEST(VariableTest, isAssigned)
+{
     Variable var{"Test1", {1, 2, 3, 4, 5}};
 
     ASSERT_FALSE(var.isAssigned());
@@ -23,7 +25,8 @@ TEST(VariableTest, isAssigned) {
     ASSERT_FALSE(var.isAssigned());
 }
 
-TEST(VariableTest, reduceAndRestoreDomain) {
+TEST(VariableTest, reduceAndRestoreDomain)
+{
     Variable var{"Test1", {1, 2, 3, 4, 5}};
 
     ASSERT_EQ(VariableTestHelper::getDomain(var).size(), 5);
@@ -39,7 +42,8 @@ TEST(VariableTest, reduceAndRestoreDomain) {
     ASSERT_EQ(VariableTestHelper::getDomain(var).size(), 5);
 }
 
-TEST(VariableTest, reduceDomainValueOutOfDomain) {
+TEST(VariableTest, reduceDomainValueOutOfDomain)
+{
     Variable var{"Test1", {1, 2, 3, 4, 5}};
 
     EXPECT_THROW(var.reduceDomain(10), std::domain_error);

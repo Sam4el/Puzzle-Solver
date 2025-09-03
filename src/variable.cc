@@ -5,19 +5,25 @@
 
 Variable::Variable(std::string name, std::set<int> domain)
     : name{name},
-    domain{domain} {}
+      domain{domain} {}
 
-void Variable::reduceDomain(int value) {
-    if (domain.contains(value)) {
+void Variable::reduceDomain(int value)
+{
+    if (domain.contains(value))
+    {
         domainDelta.push(value);
         domain.erase(value);
-    } else {
+    }
+    else
+    {
         throw std::domain_error("Value " + std::to_string(value) + " is not in the domain");
     }
 }
 
-void Variable::restoreLastDomain() {
-    if (!domainDelta.empty()) {
+void Variable::restoreLastDomain()
+{
+    if (!domainDelta.empty())
+    {
         domain.insert(domainDelta.top());
         domainDelta.pop();
     }

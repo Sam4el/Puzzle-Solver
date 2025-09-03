@@ -3,7 +3,8 @@
 #include "csp.h"
 #include "csp_test/inc/csp_test_helper.h"
 
-TEST(cspTest, addVariable) {
+TEST(cspTest, addVariable)
+{
     CSP csp;
     ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 0);
 
@@ -11,7 +12,8 @@ TEST(cspTest, addVariable) {
     ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 1);
 }
 
-TEST(cspTest, addConstraint) {
+TEST(cspTest, addConstraint)
+{
     CSP csp;
     ASSERT_EQ(CspTestHelper::getConstraintsSize(csp), 0);
 
@@ -19,7 +21,8 @@ TEST(cspTest, addConstraint) {
     ASSERT_EQ(CspTestHelper::getConstraintsSize(csp), 1);
 }
 
-TEST(cspTest, getUnassignedVariables) {
+TEST(cspTest, getUnassignedVariables)
+{
     CSP csp;
     ASSERT_EQ(csp.getUnassignedVariables().size(), 0);
 

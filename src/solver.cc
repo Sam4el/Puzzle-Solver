@@ -1,34 +1,37 @@
 #include "solver.h"
 
-namespace {
+namespace
+{
 
 } // namespace
 
-bool Solver::backtrackingSearch() {
-    if (csp.getUnassignedVariables().size() == 0) {
+bool Solver::backtrackingSearch()
+{
+    if (csp.getUnassignedVariables().size() == 0)
+    {
         return true;
     }
-    else {
-
+    else
+    {
     }
 }
 
-bool Solver::assignVariable(Variable& var, int value) {
-    // Try/catch?
-
-    var.assign(value);
+bool Solver::assignVariable(Variable &var, int value)
+{
+    var.assign();
+    assignments[var.getName()] = value;
 }
 
-void Solver::unassignVariable(Variable& var) {
+void Solver::unassignVariable(Variable &var)
+{
     var.unassign();
+    assignments.erase(var.getName());
 }
 
-void Solver::constraintPropagation() {
-
+void Solver::constraintPropagation()
+{
 }
 
-std::unordered_map<std::string, int> Solver::run() {
-    backtrackingSearch();
-
-    return assignments;
+std::unordered_map<std::string, int> Solver::run()
+{
 }
