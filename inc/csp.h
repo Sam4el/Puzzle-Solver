@@ -19,9 +19,11 @@ class CSP {
     constraints.push_back(std::move(constraint));
   }
   inline void addVariable(Variable var) { variables.push_back(std::move(var)); }
-  inline void assignVariable(Variable &var) { var.assign(); }
 
-  std::vector<Variable *> getUnassignedVariables();
+  inline const std::vector<std::unique_ptr<Constraint>> &getConstraints() const {
+    return constraints;
+  }
+  inline std::vector<Variable> &getVariables() { return variables; }
 
  private:
   std::vector<Variable> variables;

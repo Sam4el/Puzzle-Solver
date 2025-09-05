@@ -12,8 +12,4 @@ class CspTestHelper {
 
     std::vector<Variable *> scope{};
   };
-
-  static const int getVariablesSize(const CSP &csp) { return csp.variables.size(); }
-
-  static const int getConstraintsSize(const CSP &csp) { return csp.constraints.size(); }
 };

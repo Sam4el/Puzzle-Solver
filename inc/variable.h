@@ -12,19 +12,16 @@ class Variable {
 
  public:
   Variable() = delete;
-  Variable(const int id, std::set<int> domain);
+  Variable(const int id, const std::set<int>& domain);
 
   void reduceDomain(int value);
   void restoreLastDomain();
-  inline void assign() { assigned = true; }
-  inline void unassign() { assigned = false; }
 
+  inline const std::set<int>& getDomain() { return domain; }
   inline const int getId() const { return id; }
-  inline bool isAssigned() const { return assigned; }
 
  private:
   const int id;
   std::set<int> domain;
   std::stack<int> domainDelta;
-  bool assigned;
 };

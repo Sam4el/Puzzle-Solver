@@ -4,13 +4,9 @@ class Variable {
     - id : int
     - domain : set<int>
     - domainDelta : stack<int>
-    - assigned : bool
     + reduceDomain(value : int) : void
     + restoreLastDomain() : void
-    + assign() : void
-    + unassign() : void
     + getId() : int
-    + isAssigned() : bool
 }
 
 abstract class Constraint {
@@ -23,8 +19,8 @@ class CSP {
     - constraints : vector<unique_ptr<Constraint>>
     + addVariable(var : Variable) : void
     + addConstraint(constraint : unique_ptr<Constraint>) : void
-    + assignVariable(var : Variable&, value : int) void
-    + getUnassignedVariables() : vector<Variable*>
+    + getConstraints() : vector<unique_ptr<Constraint>>&
+    + getVariables() : vector<Variable>&
     + CSP(const CSP&) = delete
     + operator=(const CSP&) : CSP& = delete
     + CSP(CSP&&) = delete
@@ -33,16 +29,14 @@ class CSP {
 
 class Solver {
     - csp : CSP&
-    - assignments : unordered_map<int, int>
-    - backtrackingSearch() : bool
+    - checkConstraint(assignments : unordered_map<int, int>) : bool
+    + getUnassignedVariables() : vector<Variable*>
     - forwardChecking() : void
     - arcConsistency() : void
     - minimumRemainingValues() : void
     - leastConstrainingValue() : void
     - constraintPropagation() : void
-    - assignVariable(var : Variable, value : int) : bool
-    - unassignVariable(var : Variable) : void
-    + run() : unordered_map<int, int>
+    + backtrackingSearch(unordered_map<int, int> assignments) : bool
 }
 
 CSP "1..*" --> "1..*" Variable : contains

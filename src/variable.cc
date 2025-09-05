@@ -3,7 +3,8 @@
 #include <iostream>
 #include <stdexcept>
 
-Variable::Variable(const int id, std::set<int> domain) : id{id}, domain{domain} {
+Variable::Variable(const int id, const std::set<int> &domain)
+    : id{id}, domain{std::move(domain)} {
 }
 
 void Variable::reduceDomain(int value) {

@@ -11,6 +11,7 @@ class Constraint {
   virtual ~Constraint() = default;
 
   // assignments are <ConstraintId, Value>
+  // TODO change int to template argument in the future?
   virtual bool isSatisfied(const std::unordered_map<int, int> &assignments) const = 0;
   virtual const std::vector<Variable *> &getScope() const = 0;
 };

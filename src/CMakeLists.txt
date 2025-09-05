@@ -1,5 +1,4 @@
 add_library(solverLib STATIC
-    csp.cc
     solver.cc
     variable.cc
 )

@@ -4,30 +4,23 @@
 
 #include "csp_test/inc/csp_test_helper.h"
 
-TEST(cspTest, addVariable) {
+class CspTest : public ::testing::Test {
+ protected:
   CSP csp;
-  ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 0);
+  Variable var1{10, {1, 2, 3, 4}};
+  Variable var2{20, {1, 4}};
+};
 
-  csp.addVariable({9, {1, 2, 3, 4}});
-  ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 1);
-}
-
-TEST(cspTest, addConstraint) {
-  CSP csp;
-  ASSERT_EQ(CspTestHelper::getConstraintsSize(csp), 0);
-
+TEST_F(CspTest, addAndGetConstraints) {
   csp.addConstraint(std::make_unique<CspTestHelper::ConstraintStub>());
-  ASSERT_EQ(CspTestHelper::getConstraintsSize(csp), 1);
+  csp.addConstraint(std::make_unique<CspTestHelper::ConstraintStub>());
+
+  ASSERT_EQ(csp.getConstraints().size(), 2);
 }
 
-TEST(cspTest, getUnassignedVariables) {
-  CSP csp;
-  ASSERT_EQ(csp.getUnassignedVariables().size(), 0);
-
-  csp.addVariable({9, {1, 2, 3, 4}});
-  ASSERT_EQ(csp.getUnassignedVariables().size(), 1);
-
+TEST_F(CspTest, addAndGetVariables) {
   csp.addVariable({10, {1, 2, 3, 4}});
-  csp.addVariable({11, {1, 2, 3, 4}});
-  ASSERT_EQ(csp.getUnassignedVariables().size(), 3);
+  csp.addVariable({20, {1, 4}});
+
+  ASSERT_EQ(csp.getVariables().size(), 2);
 }
