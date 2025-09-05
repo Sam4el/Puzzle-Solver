@@ -1,9 +1,6 @@
 #include "solver.h"
 
-namespace
-{
-
-} // namespace
+namespace {}  // namespace
 
 // bool Solver::backtrackingSearch()
 // {
@@ -16,16 +13,14 @@ namespace
 //     }
 // }
 
-void Solver::assignVariable(Variable &var, int value)
-{
-    var.assign();
-    assignments[var.getId()] = value;
+void Solver::assignVariable(Variable &var, int value) {
+  var.assign();
+  assignments[var.getId()] = value;
 }
 
-void Solver::unassignVariable(Variable &var)
-{
-    var.unassign();
-    assignments.erase(var.getId());
+void Solver::unassignVariable(Variable &var) {
+  var.unassign();
+  assignments.erase(var.getId());
 }
 
 // void Solver::constraintPropagation()

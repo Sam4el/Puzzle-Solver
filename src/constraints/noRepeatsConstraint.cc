@@ -1,21 +1,19 @@
-#include <unordered_set>
-
 #include "constraints/noRepeatsConstraint.h"
 
-NoRepeatsConstraint::NoRepeatsConstraint(std::vector<Variable *> vars) : scope{vars} {}
+#include <unordered_set>
 
-bool NoRepeatsConstraint::isSatisfied(const std::unordered_map<int, int> &assignments) const
-{
-    // TODO change int to template argument in the future?
-    std::unordered_set<int> uniqueValues;
-    uniqueValues.reserve(assignments.size());
-    for (const auto &[id, value] : assignments)
-    {
-        if (!uniqueValues.insert(value).second)
-        {
-            return false;
-        }
+NoRepeatsConstraint::NoRepeatsConstraint(std::vector<Variable *> vars) : scope{vars} {
+}
+
+bool NoRepeatsConstraint::isSatisfied(const std::unordered_map<int, int> &assignments) const {
+  // TODO change int to template argument in the future?
+  std::unordered_set<int> uniqueValues;
+  uniqueValues.reserve(assignments.size());
+  for (const auto &[id, value] : assignments) {
+    if (!uniqueValues.insert(value).second) {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
