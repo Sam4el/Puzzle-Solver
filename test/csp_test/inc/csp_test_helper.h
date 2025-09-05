@@ -7,14 +7,16 @@ class CspTestHelper
 public:
     class ConstraintStub : public Constraint
     {
-        bool isSatisfied(std::unordered_map<std::string, int> assignments) const override
+        bool isSatisfied(const std::unordered_map<int, int> &assignments) const override
         {
             return false;
         }
-        std::vector<Variable *> getScope() const override
+        const std::vector<Variable *> &getScope() const override
         {
-            return {};
+            return scope;
         }
+
+        std::vector<Variable *> scope{};
     };
 
     static const int getVariablesSize(const CSP &csp)

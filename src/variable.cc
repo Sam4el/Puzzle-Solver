@@ -3,8 +3,8 @@
 
 #include "variable.h"
 
-Variable::Variable(std::string name, std::set<int> domain)
-    : name{name},
+Variable::Variable(const int id, std::set<int> domain)
+    : id{id},
       domain{domain} {}
 
 void Variable::reduceDomain(int value)

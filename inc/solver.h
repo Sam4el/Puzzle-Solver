@@ -8,9 +8,10 @@ public:
     Solver() = delete;
     Solver(CSP &csp) : csp{csp} {}
 
-    std::unordered_map<std::string, int> run();
+    std::unordered_map<int, int> run();
 
 private:
+    void assignVariable(Variable &var, int value);
     void forwardChecking();
     void arcConsistency();
     void minimumRemainingValues();
@@ -19,10 +20,9 @@ private:
     void constraintPropagation();
 
     bool backtrackingSearch();
-    bool assignVariable(Variable &var, int value);
 
     CSP &csp;
     // TODO change string to int
     // TODO change int to some template type
-    std::unordered_map<std::string, int> assignments;
+    std::unordered_map<int, int> assignments;
 };

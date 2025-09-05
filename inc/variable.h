@@ -13,18 +13,18 @@ class Variable
 
 public:
     Variable() = delete;
-    Variable(const std::string name, std::set<int> domain);
+    Variable(const int id, std::set<int> domain);
 
     void reduceDomain(int value);
     void restoreLastDomain();
     inline void assign() { assigned = true; }
     inline void unassign() { assigned = false; }
 
-    inline const std::string getName() const { return name; }
+    inline const int getId() const { return id; }
     inline bool isAssigned() const { return assigned; }
 
 private:
-    const std::string name;
+    const int id;
     std::set<int> domain;
     std::stack<int> domainDelta;
     bool assigned;

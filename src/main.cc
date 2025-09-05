@@ -12,14 +12,14 @@ namespace
 
     // TODO change value to returned solution
     // TODO add arguments with variables and constraints
-    void findSolution()
-    {
-        CSP csp;
-        // TODO Initialize CSP
-        // TODO Initial constraint propagation
-        Solver solverEngine{csp};
-        solverEngine.run();
-    }
+    // void findSolution()
+    // {
+    //     CSP csp;
+    //     // TODO Initialize CSP
+    //     // TODO Initial constraint propagation
+    //     Solver solverEngine{csp};
+    //     solverEngine.run();
+    // }
 
 } // namespace
 
@@ -29,7 +29,7 @@ int main()
 
     chooseGame();
 
-    findSolution();
+    // findSolution();
 
     return 0;
 }

@@ -25,7 +25,4 @@ public:
 private:
     std::vector<Variable> variables;
     std::vector<std::unique_ptr<Constraint>> constraints;
-    // TODO Optimization needed?
-    // Maybe add unordered_map<string, int> to keep quick acces
-    // to Variables or Constraints by name.
 };

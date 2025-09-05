@@ -5,16 +5,16 @@
 
 TEST(VariableTest, constructor)
 {
-    Variable var{"Test123", {1, 2, 3, 4, 5}};
+    Variable var{7, {1, 2, 3, 4, 5}};
     std::set<int> expectedDomain{1, 2, 3, 4, 5};
 
     ASSERT_EQ(VariableTestHelper::getDomain(var), expectedDomain);
-    ASSERT_EQ(var.getName(), "Test123");
+    ASSERT_EQ(var.getId(), 7);
 }
 
 TEST(VariableTest, isAssigned)
 {
-    Variable var{"Test1", {1, 2, 3, 4, 5}};
+    Variable var{7, {1, 2, 3, 4, 5}};
 
     ASSERT_FALSE(var.isAssigned());
 
@@ -27,7 +27,7 @@ TEST(VariableTest, isAssigned)
 
 TEST(VariableTest, reduceAndRestoreDomain)
 {
-    Variable var{"Test1", {1, 2, 3, 4, 5}};
+    Variable var{7, {1, 2, 3, 4, 5}};
 
     ASSERT_EQ(VariableTestHelper::getDomain(var).size(), 5);
 
@@ -44,7 +44,7 @@ TEST(VariableTest, reduceAndRestoreDomain)
 
 TEST(VariableTest, reduceDomainValueOutOfDomain)
 {
-    Variable var{"Test1", {1, 2, 3, 4, 5}};
+    Variable var{7, {1, 2, 3, 4, 5}};
 
     EXPECT_THROW(var.reduceDomain(10), std::domain_error);
 }

@@ -5,33 +5,33 @@ namespace
 
 } // namespace
 
-bool Solver::backtrackingSearch()
-{
-    if (csp.getUnassignedVariables().size() == 0)
-    {
-        return true;
-    }
-    else
-    {
-    }
-}
+// bool Solver::backtrackingSearch()
+// {
+//     if (csp.getUnassignedVariables().size() == 0)
+//     {
+//         return true;
+//     }
+//     else
+//     {
+//     }
+// }
 
-bool Solver::assignVariable(Variable &var, int value)
+void Solver::assignVariable(Variable &var, int value)
 {
     var.assign();
-    assignments[var.getName()] = value;
+    assignments[var.getId()] = value;
 }
 
 void Solver::unassignVariable(Variable &var)
 {
     var.unassign();
-    assignments.erase(var.getName());
+    assignments.erase(var.getId());
 }
 
-void Solver::constraintPropagation()
-{
-}
+// void Solver::constraintPropagation()
+// {
+// }
 
-std::unordered_map<std::string, int> Solver::run()
-{
-}
+// std::unordered_map<int, int> Solver::run()
+// {
+// }

@@ -8,7 +8,7 @@ TEST(cspTest, addVariable)
     CSP csp;
     ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 0);
 
-    csp.addVariable({"Test1", {1, 2, 3, 4}});
+    csp.addVariable({9, {1, 2, 3, 4}});
     ASSERT_EQ(CspTestHelper::getVariablesSize(csp), 1);
 }
 
@@ -26,10 +26,10 @@ TEST(cspTest, getUnassignedVariables)
     CSP csp;
     ASSERT_EQ(csp.getUnassignedVariables().size(), 0);
 
-    csp.addVariable({"Test1", {1, 2, 3, 4}});
+    csp.addVariable({9, {1, 2, 3, 4}});
     ASSERT_EQ(csp.getUnassignedVariables().size(), 1);
 
-    csp.addVariable({"Test2", {1, 2, 3, 4}});
-    csp.addVariable({"Test3", {1, 2, 3, 4}});
+    csp.addVariable({10, {1, 2, 3, 4}});
+    csp.addVariable({11, {1, 2, 3, 4}});
     ASSERT_EQ(csp.getUnassignedVariables().size(), 3);
 }

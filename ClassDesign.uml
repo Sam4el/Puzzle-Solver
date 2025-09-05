@@ -1,7 +1,7 @@
 @startuml
 
 class Variable {
-    - name : string
+    - id : int
     - domain : set<int>
     - domainDelta : stack<int>
     - assigned : bool
@@ -9,12 +9,12 @@ class Variable {
     + restoreLastDomain() : void
     + assign() : void
     + unassign() : void
-    + getName() : string
+    + getId() : int
     + isAssigned() : bool
 }
 
 abstract class Constraint {
-    + isSatisfied(assignments : unordered_map<string, int>) : bool
+    + isSatisfied(assignments : unordered_map<int, int>) : bool
     + getScope() : vector<Variable*>
 }
 
@@ -33,7 +33,7 @@ class CSP {
 
 class Solver {
     - csp : CSP&
-    - assignments : unordered_map<string, int>
+    - assignments : unordered_map<int, int>
     - backtrackingSearch() : bool
     - forwardChecking() : void
     - arcConsistency() : void
@@ -42,7 +42,7 @@ class Solver {
     - constraintPropagation() : void
     - assignVariable(var : Variable, value : int) : bool
     - unassignVariable(var : Variable) : void
-    + run() : unordered_map<string, int>
+    + run() : unordered_map<int, int>
 }
 
 CSP "1..*" --> "1..*" Variable : contains
