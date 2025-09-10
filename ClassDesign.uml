@@ -6,31 +6,32 @@ class Variable {
     - domainDelta : stack<int>
     + reduceDomain(value : int) : void
     + restoreLastDomain() : void
-    + getId() : int
+    + getDomain() : set<int>& {query}
+    + getId() : int {query}
 }
 
 abstract class Constraint {
-    + isSatisfied(assignments : unordered_map<int, int>) : bool
-    + getScope() : vector<Variable*>
+    + isSatisfied(assignments : unordered_map<int, int>&) : bool {query}
+    + getScope() : vector<Variable*>& {query}
 }
 
 class CSP {
     - variables : vector<Variable>
     - constraints : vector<unique_ptr<Constraint>>
-    + addVariable(var : Variable) : void
-    + addConstraint(constraint : unique_ptr<Constraint>) : void
-    + getConstraints() : vector<unique_ptr<Constraint>>&
-    + getVariables() : vector<Variable>&
     + CSP(const CSP&) = delete
     + operator=(const CSP&) : CSP& = delete
     + CSP(CSP&&) = delete
     + operator=(CSP&&) : CSP& = delete
+    + addVariable(var : Variable) : void
+    + addConstraint(constraint : unique_ptr<Constraint>&&) : void
+    + getConstraints() : vector<unique_ptr<Constraint>>& {query}
+    + getVariables() : vector<Variable>&
 }
 
 class Solver {
     - csp : CSP&
-    - checkConstraint(assignments : unordered_map<int, int>) : bool
-    + getUnassignedVariables() : vector<Variable*>
+    - checkConstraint(assignments : unordered_map<int, int>&) : bool {query}
+    - getUnassignedVariables() : vector<Variable*> {query}
     - forwardChecking() : void
     - arcConsistency() : void
     - minimumRemainingValues() : void

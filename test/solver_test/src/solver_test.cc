@@ -74,7 +74,7 @@ TEST_F(SolverTest, backtrackingSearchSudoku4x4) {
     }
   }
 
-  // // Assign some Variables
+  // Assign some Variables
   std::unordered_map<int, int> result;
   result[0] = 1;
   result[3] = 4;

@@ -22,7 +22,6 @@ std::vector<Variable *> Solver::getUnassignedVariables(
 }
 
 bool Solver::backtrackingSearch(std::unordered_map<int, int> &assignments) {
-  // All assigned, solution found
   if (getUnassignedVariables(assignments).empty()) {
     return true;
   }
@@ -30,7 +29,6 @@ bool Solver::backtrackingSearch(std::unordered_map<int, int> &assignments) {
   // TODO use heuristics to choose variable
   // TODO use Constraint propagation to reduce domains
 
-  // Assign first unassigned variable
   auto activeVariable = getUnassignedVariables(assignments)[0];
   const auto &domain = activeVariable->getDomain();
 
@@ -45,13 +43,8 @@ bool Solver::backtrackingSearch(std::unordered_map<int, int> &assignments) {
         }
       }
     }
-    // Cleanup after finishing domain or failed backtrackingSearch
     assignments.erase(activeVariable->getId());
   }
 
   return false;
 }
-
-// void Solver::constraintPropagation()
-// {
-// }

@@ -17,7 +17,7 @@ class Variable {
   void reduceDomain(int value);
   void restoreLastDomain();
 
-  inline const std::set<int>& getDomain() { return domain; }
+  inline const std::set<int>& getDomain() const { return domain; }
   inline const int getId() const { return id; }
 
  private:
