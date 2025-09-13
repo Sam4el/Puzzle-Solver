@@ -32,11 +32,12 @@ class Solver {
     - csp : CSP&
     - checkConstraint(assignments : unordered_map<int, int>&) : bool {query}
     - getUnassignedVariables() : vector<Variable*> {query}
-    - forwardChecking() : void
-    - arcConsistency() : void
-    - minimumRemainingValues() : void
-    - leastConstrainingValue() : void
-    - constraintPropagation() : void
+    - propagate() : void
+    - orderValues(csp : CSP&, var : Variable&, assignments : unordered_map<int, int>&)) : void
+    - chooseVariable(csp : CSP&, assignments : unordered_map<int, int>&) : void
+    + setVariableHeuristic(variableHeuristic : unique_ptr<VariableHeuristic>) : void
+    + setValueHeuristic(valueHeuristic : unique_ptr<ValueHeuristic>) : void
+    + setPropagator(propagator : unique_ptr<Propagation>) : void
     + backtrackingSearch(unordered_map<int, int> assignments) : bool
 }
 
