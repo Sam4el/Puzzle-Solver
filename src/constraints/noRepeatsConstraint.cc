@@ -2,7 +2,8 @@
 
 #include <unordered_set>
 
-NoRepeatsConstraint::NoRepeatsConstraint(const std::vector<Variable *> &vars) : scope{vars} {
+NoRepeatsConstraint::NoRepeatsConstraint(const std::vector<const Variable *> &vars)
+    : scope{vars} {
 }
 
 bool NoRepeatsConstraint::isSatisfied(const std::unordered_map<int, int> &assignments) const {

@@ -8,8 +8,8 @@ class CspTestHelper {
     bool isSatisfied(const std::unordered_map<int, int> &assignments) const override {
       return false;
     }
-    const std::vector<Variable *> &getScope() const override { return scope; }
+    const std::vector<const Variable *> &getScope() const override { return scope; }
 
-    std::vector<Variable *> scope{};
+    std::vector<const Variable *> scope{};
   };
 };

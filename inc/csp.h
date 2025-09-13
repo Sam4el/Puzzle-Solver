@@ -23,7 +23,10 @@ class CSP {
   inline const std::vector<std::unique_ptr<Constraint>> &getConstraints() const {
     return constraints;
   }
-  inline std::vector<Variable> &getVariables() { return variables; }
+  inline const std::vector<Variable> &getVariables() const { return variables; }
+
+  const std::vector<const Variable *> getUnassignedVariables(
+      const std::unordered_map<int, int> &assignments) const;
 
  private:
   std::vector<Variable> variables;

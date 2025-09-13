@@ -25,20 +25,33 @@ class CSP {
     + addVariable(var : Variable) : void
     + addConstraint(constraint : unique_ptr<Constraint>&&) : void
     + getConstraints() : vector<unique_ptr<Constraint>>& {query}
-    + getVariables() : vector<Variable>&
+    + getVariables() : vector<Variable>& {query}
+    + getUnassignedVariables(assignments : unordered_map<int, int>&) : vector<Variable*> {query}
 }
 
 class Solver {
     - csp : CSP&
     - checkConstraint(assignments : unordered_map<int, int>&) : bool {query}
-    - getUnassignedVariables() : vector<Variable*> {query}
+    - getUnassignedVariables(assignments : unordered_map<int, int>&) : vector<Variable*> {query}
     - propagate() : void
-    - orderValues(csp : CSP&, var : Variable&, assignments : unordered_map<int, int>&)) : void
-    - chooseVariable(csp : CSP&, assignments : unordered_map<int, int>&) : void
+    - orderValues(csp : CSP&, var : Variable&, assignments : unordered_map<int, int>&)) : set<int> {query}
+    - chooseVariable(csp : CSP&, assignments : unordered_map<int, int>&) : Variable* {query}
     + setVariableHeuristic(variableHeuristic : unique_ptr<VariableHeuristic>) : void
     + setValueHeuristic(valueHeuristic : unique_ptr<ValueHeuristic>) : void
     + setPropagator(propagator : unique_ptr<Propagation>) : void
     + backtrackingSearch(unordered_map<int, int> assignments) : bool
+}
+
+abstract class VariableHeuristic {
+    + chooseVariable(csp : CSP&, assignments : unordered_map<int, int>&) : Variable* {query}
+}
+
+abstract class ValueHeuristic {
+    + orderValues(csp : CSP&, var : Variable&, assignments : unordered_map<int, int>&) : const set<int> {query}
+}
+
+abstract class Propagator {
+    + propagate() : void
 }
 
 CSP "1..*" --> "1..*" Variable : contains

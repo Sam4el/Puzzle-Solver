@@ -9,18 +9,6 @@ bool Solver::checkConstraints(std::unordered_map<int, int> &assignments) const {
       [&assignments](const auto &constraint) { return constraint->isSatisfied(assignments); });
 }
 
-std::vector<Variable *> Solver::getUnassignedVariables(
-    std::unordered_map<int, int> &assignments) const {
-  std::vector<Variable *> unassignedVariables;
-  for (auto &var : csp.getVariables()) {
-    if (assignments.find(var.getId()) == assignments.end()) {
-      unassignedVariables.push_back(&var);
-    }
-  }
-
-  return unassignedVariables;
-}
-
 bool Solver::backtrackingSearch(std::unordered_map<int, int> &assignments) {
   if (getUnassignedVariables(assignments).empty()) {
     return true;

@@ -21,7 +21,7 @@ TEST_F(SolverTest, backtrackingSearchWithSolution) {
   csp.addVariable(var3);
 
   auto& variables = csp.getVariables();
-  std::vector<Variable*> constraintScope{&variables[0], &variables[1], &variables[2]};
+  std::vector<const Variable*> constraintScope{&variables[0], &variables[1], &variables[2]};
 
   csp.addConstraint(std::make_unique<NoRepeatsConstraint>(constraintScope));
 
@@ -43,7 +43,7 @@ TEST_F(SolverTest, backtrackingSearchNoSolution) {
   csp.addVariable(var3);
 
   auto& variables = csp.getVariables();
-  std::vector<Variable*> constraintScope{&variables[0], &variables[1], &variables[2]};
+  std::vector<const Variable*> constraintScope{&variables[0], &variables[1], &variables[2]};
 
   csp.addConstraint(std::make_unique<NoRepeatsConstraint>(constraintScope));
 
@@ -85,11 +85,14 @@ TEST_F(SolverTest, backtrackingSearchSudoku4x4) {
   auto& variables = csp.getVariables();
 
   // Scope of blocks 2x2
-  std::vector<Variable*> scope1{&variables[0], &variables[1], &variables[4], &variables[5]};
-  std::vector<Variable*> scope2{&variables[2], &variables[3], &variables[6], &variables[7]};
-  std::vector<Variable*> scope3{&variables[8], &variables[9], &variables[12], &variables[13]};
-  std::vector<Variable*> scope4{&variables[10], &variables[11], &variables[14],
-                                &variables[15]};
+  std::vector<const Variable*> scope1{&variables[0], &variables[1], &variables[4],
+                                      &variables[5]};
+  std::vector<const Variable*> scope2{&variables[2], &variables[3], &variables[6],
+                                      &variables[7]};
+  std::vector<const Variable*> scope3{&variables[8], &variables[9], &variables[12],
+                                      &variables[13]};
+  std::vector<const Variable*> scope4{&variables[10], &variables[11], &variables[14],
+                                      &variables[15]};
 
   csp.addConstraint(std::make_unique<NoRepeatsConstraint>(scope1));
   csp.addConstraint(std::make_unique<NoRepeatsConstraint>(scope2));
@@ -98,7 +101,7 @@ TEST_F(SolverTest, backtrackingSearchSudoku4x4) {
 
   // Add scope of rows and cols
   for (int i = 0; i < boardSize; i++) {
-    std::vector<Variable*> rowScope;
+    std::vector<const Variable*> rowScope;
     for (int j = 0; j < boardSize; j++) {
       rowScope.push_back(&sudokuBoard[i][j]);
     }
@@ -106,7 +109,7 @@ TEST_F(SolverTest, backtrackingSearchSudoku4x4) {
   }
 
   for (int j = 0; j < boardSize; j++) {
-    std::vector<Variable*> colScope;
+    std::vector<const Variable*> colScope;
     for (int i = 0; i < boardSize; i++) {
       colScope.push_back(&sudokuBoard[i][j]);
     }

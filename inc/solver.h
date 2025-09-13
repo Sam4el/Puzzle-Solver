@@ -24,17 +24,20 @@ class Solver {
 
  private:
   bool checkConstraints(std::unordered_map<int, int> &assignments) const;
-  std::vector<Variable *> getUnassignedVariables(
-      std::unordered_map<int, int> &assignments) const;
+  inline const std::vector<const Variable *> getUnassignedVariables(
+      std::unordered_map<int, int> &assignments) const {
+    return csp.getUnassignedVariables(assignments);
+  }
 
   // TODO arguments for propagate
-  inline void propagate() { propagator->propagate(); }
-  inline void orderValues(const CSP &csp, const Variable &var,
-                          std::unordered_map<int, int> &assignments) {
-    valueHeuristic->orderValues(csp, var, assignments);
+  inline void propagate() const { propagator->propagate(); }
+  inline const std::set<int> orderValues(const CSP &csp, const Variable &var,
+                                         std::unordered_map<int, int> &assignments) const {
+    return valueHeuristic->orderValues(csp, var, assignments);
   }
-  inline void chooseVariable(const CSP &csp, std::unordered_map<int, int> &assignments) {
-    variableHeuristic->chooseVariable(csp, assignments);
+  inline const Variable *chooseVariable(const CSP &csp,
+                                        std::unordered_map<int, int> &assignments) const {
+    return variableHeuristic->chooseVariable(csp, assignments);
   }
 
   CSP &csp;

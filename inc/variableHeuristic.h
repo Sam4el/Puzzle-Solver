@@ -5,6 +5,6 @@
 class VariableHeuristic {
  public:
   ~VariableHeuristic() = default;
-  virtual Variable* chooseVariable(const CSP& csp,
-                                   const std::unordered_map<int, int>& assignments) = 0;
+  virtual const Variable* chooseVariable(
+      const CSP& csp, const std::unordered_map<int, int>& assignments) const = 0;
 };

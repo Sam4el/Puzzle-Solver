@@ -14,8 +14,8 @@ class NoRepeatsConstraintTest : public ::testing::Test {
   std::unique_ptr<Constraint> noRepeatsConstraint;
 
   void SetUp() override {
-    noRepeatsConstraint = std::make_unique<NoRepeatsConstraint>(
-        std::vector<Variable *>{&variables[0], &variables[1], &variables[2], &variables[3]});
+    noRepeatsConstraint = std::make_unique<NoRepeatsConstraint>(std::vector<const Variable *>{
+        &variables[0], &variables[1], &variables[2], &variables[3]});
   }
 };
 
