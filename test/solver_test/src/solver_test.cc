@@ -3,6 +3,7 @@
 #include <gtest/gtest.h>
 
 #include "constraints/noRepeatsConstraint.h"
+#include "heuristics/minimumRemainingValuesHeuristic.h"
 
 class SolverTest : public ::testing::Test {
  protected:
@@ -15,6 +16,30 @@ TEST_F(SolverTest, backtrackingSearchWithSolution) {
   Variable var1{1, {3, 4}};
   Variable var2{2, {3}};
   Variable var3{3, {3, 4, 5}};
+
+  csp.addVariable(var1);
+  csp.addVariable(var2);
+  csp.addVariable(var3);
+
+  auto& variables = csp.getVariables();
+  std::vector<const Variable*> constraintScope{&variables[0], &variables[1], &variables[2]};
+
+  csp.addConstraint(std::make_unique<NoRepeatsConstraint>(constraintScope));
+
+  std::unordered_map<int, int> result;
+  solver.backtrackingSearch(result);
+
+  std::unordered_map<int, int> expectedResult{{1, 4}, {2, 3}, {3, 5}};
+
+  ASSERT_EQ(result, expectedResult);
+}
+
+TEST_F(SolverTest, backtrackingSearchWithVariableHeuristic) {
+  Variable var1{1, {3, 4}};
+  Variable var2{2, {3}};
+  Variable var3{3, {3, 4, 5}};
+
+  solver.setVariableHeuristic(std::make_unique<MRV>());
 
   csp.addVariable(var1);
   csp.addVariable(var2);

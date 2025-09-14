@@ -1,6 +1,7 @@
 add_executable(puzzleSolverTests
     csp_test/src/csp_test.cc
     constraints/src/noRepeatsConstraint_test.cc
+    heuristics/src/minimumRemainingValuesHeuristic_test.cc
     solver_test/src/solver_test.cc
     variable_test/src/variable_test.cc
 )

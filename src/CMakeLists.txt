@@ -9,3 +9,4 @@ target_include_directories(solverLib PUBLIC
 )
 
 add_subdirectory(constraints)
+add_subdirectory(heuristics)
