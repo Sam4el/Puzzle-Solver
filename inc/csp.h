@@ -15,12 +15,12 @@ class CSP {
   CSP(CSP &&) = delete;
   CSP &operator=(CSP &&) = delete;
 
-  inline void addConstraint(std::unique_ptr<Constraint> &&constraint) {
+  inline void addConstraint(std::unique_ptr<IConstraint> &&constraint) {
     constraints.push_back(std::move(constraint));
   }
   inline void addVariable(Variable var) { variables.push_back(std::move(var)); }
 
-  inline const std::vector<std::unique_ptr<Constraint>> &getConstraints() const {
+  inline const std::vector<std::unique_ptr<IConstraint>> &getConstraints() const {
     return constraints;
   }
   inline const std::vector<Variable> &getVariables() const { return variables; }
@@ -30,5 +30,5 @@ class CSP {
 
  private:
   std::vector<Variable> variables;
-  std::vector<std::unique_ptr<Constraint>> constraints;
+  std::vector<std::unique_ptr<IConstraint>> constraints;
 };

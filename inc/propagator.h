@@ -1,8 +1,8 @@
 #pragma once
 
-class Propagator {
+class IPropagator {
  public:
-  virtual ~Propagator() = default;
+  virtual ~IPropagator() = default;
   // TODO arguments
   virtual void propagate() = 0;
 };

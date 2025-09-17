@@ -14,7 +14,7 @@ class MRVTest : public ::testing::Test {
   Variable var3{30, {1, 2, 3, 4, 5, 6}};
   Variable var4{40, {1, 2, 3}};
 
-  std::unique_ptr<VariableHeuristic> mrv;
+  std::unique_ptr<IVariableHeuristic> mrv;
 
   void SetUp() { mrv = std::make_unique<MRV>(); }
 };

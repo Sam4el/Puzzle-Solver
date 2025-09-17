@@ -1,6 +1,6 @@
 #include "constraint.h"
 
-class NoRepeatsConstraint : public Constraint {
+class NoRepeatsConstraint : public IConstraint {
  public:
   NoRepeatsConstraint() = delete;
   NoRepeatsConstraint(const std::vector<const Variable *> &vars);

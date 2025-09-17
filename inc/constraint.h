@@ -6,9 +6,9 @@
 
 #pragma once
 
-class Constraint {
+class IConstraint {
  public:
-  virtual ~Constraint() = default;
+  virtual ~IConstraint() = default;
 
   // assignments are <ConstraintId, Value>
   // TODO change int to template argument in the future?

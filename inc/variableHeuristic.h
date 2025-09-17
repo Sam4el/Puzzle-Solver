@@ -2,9 +2,9 @@
 
 #pragma once
 
-class VariableHeuristic {
+class IVariableHeuristic {
  public:
-  ~VariableHeuristic() = default;
+  ~IVariableHeuristic() = default;
   virtual const Variable* chooseVariable(
       const CSP& csp, const std::unordered_map<int, int>& assignments) const = 0;
 };

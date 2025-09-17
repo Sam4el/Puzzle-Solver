@@ -4,7 +4,7 @@
 
 class CspTestHelper {
  public:
-  class ConstraintStub : public Constraint {
+  class ConstraintStub : public IConstraint {
     bool isSatisfied(const std::unordered_map<int, int> &assignments) const override {
       return false;
     }
